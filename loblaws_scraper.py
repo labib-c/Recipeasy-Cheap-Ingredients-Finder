@@ -14,8 +14,17 @@ import urllib.request
 
 
 def scrape(name_):
-    webpage_name = ("https://www.loblaws.ca/search/1518898683998/page/~item/" + name_ +
-                    "/~sort/recommended/~selected/true")
+    name_list = name_.split()
+    if len(name_list) == 1:
+        webpage_name = ("https://www.loblaws.ca/search/1518898683998/page/~item/" + name_ +
+                        "/~sort/recommended/~selected/true")
+    else:
+        name_cat= ''
+        for i in name_list:
+            name_cat += i
+            name_cat += '+'
+        webpage_name = ("https://www.loblaws.ca/search/1518898683998/page/~item/" + name_cat[:len(name_cat)-1] +
+                        "/~sort/recommended/~selected/true")
     page = urllib.request.urlopen(webpage_name)
     soup = BeautifulSoup(page, "html.parser")
     names = []
@@ -41,7 +50,7 @@ def sort_tuple(tuple_list):
     return sorted(tuple_list, key=lambda x: x[0])
 
 if __name__ == "__main__":
-    tup_list = scrape("apple")
+    tup_list = scrape("apple sauce")
     print(tup_list)
 
     sorted_tup_list = sort_tuple(tup_list)

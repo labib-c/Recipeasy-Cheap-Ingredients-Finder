@@ -12,15 +12,29 @@ body{
 }
 
 #sub{
-	padding-top: 200px;
+	padding-top: 100px;
 }
-h1 {
+
+#sub2{
+	padding-top: 100px;
+}
+
+#first{
   -webkit-animation: slideThenFade 6s forwards;
   text-align: center;
   vertical-align: middle;
   font-family: "Times New Roman";
   font-size: 300%;
+}
 
+#second{
+	opacity: 0;
+ -webkit-animation: fadeIn 3s forwards;
+ animation-delay: var(--delay);
+   text-align: center;
+  vertical-align: middle;
+  font-family: "Times New Roman";
+  font-size: 300%;
 }
 
 @keyframes slideThenFade {
@@ -38,5 +52,14 @@ h1 {
   100% {
   	opacity: 0;
   }
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0
+	}
+	100% {
+		opacity: 1;
+	}
 }
 

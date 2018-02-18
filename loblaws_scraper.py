@@ -41,11 +41,18 @@ def scrape(name_):
             quant = qty[qty.find("/")+1:]
             if len(quant) > 16:
                 quant = quant.replace("\n", '').strip()[0:3]
-        prices.append(price.strip().replace("\n",'').replace("e",'').strip())
-        quantity.append(quant.replace("\n",'').strip().replace(" ",''))
+        quant_to_add = quant.replace("\n",'').strip().replace(" ",'')
+        price_to_add = price.strip().replace("\n",'').replace("e",'').strip()[1:]
+        if quant_to_add != '' or price_to_add != '':
+            price_to_add = float(price_to_add)
+            if quant_to_add.strip() == 'kg':
+                price_to_add *= 10
+                quant_to_add = "100g"
+        prices.append(price_to_add)
+        quantity.append(quant_to_add)
     for i in range(len(names)):
         if prices[i] != '' or quantity[i] != '':
-            tup = (float(prices[i][1:]), names[i], quantity[i])
+            tup = (prices[i], names[i], quantity[i])
             prices_to_names.append(tup)
 
     return prices_to_names

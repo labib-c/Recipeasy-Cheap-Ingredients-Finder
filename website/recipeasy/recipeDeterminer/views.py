@@ -15,7 +15,7 @@ def index(request):
             name = ingredientForm.cleaned_data.get("name")
             Ingredient.objects.create(quantity=quantity,measurement=measurement,name=name)
             newIngredientForm = IngredientForm(request.POST or None,initial={"quantity": "123"})
-            allIngredients = ingredient.objects.all()
+            allIngredients = Ingredient.objects.all()
             context = {
             "cheapestPrice": "placeholder(quantity,measurement,name)",
             "ingredientForm": newIngredientForm,

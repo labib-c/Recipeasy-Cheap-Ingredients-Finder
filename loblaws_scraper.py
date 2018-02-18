@@ -1,18 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
 
-
-
-
-# name_box = soup.find('span', attrs={'class': 'js-product-entry-name'})
-# name = name_box.text.strip()
-# print(name)
-#
-# name_box2 = soup.find_next('span', attrs={'class': 'js-product-entry-name'})
-# name2 = name_box2.text.strip()
-# print(name2)
-
-
 def scrape(name_):
     name_list = name_.split()
     if len(name_list) == 1:
@@ -32,16 +20,32 @@ def scrape(name_):
         'class': 'js-product-entry-name'}).parent.parent.parent.parent.parent.parent.parent.find_all(
             'span', attrs={'class': 'js-product-entry-name'}):
         names.append(name.text.strip())
+
     prices = []
-    for price in soup.find('span', attrs={
-        'class': 'reg-price-text'}).parent.parent.parent.parent.parent.parent.parent.parent.find_all(
-            'span', attrs={'class': 'reg-price-text'}):
-        prices.append(price.text.strip())
     prices_to_names = []
 
+    quantity = []
+
+    for q in soup.find('span', attrs={
+        'class':'reg-qty'}).parent.parent.parent.parent.parent.parent.parent.parent.find_all(
+            'span', attrs={'class': 'reg-qty'}):
+        qty = q.text.strip()
+        if '100\nea' in qty:
+            pass
+        if 'ea' in qty:
+            price = qty[qty.find("\n")+1:qty.find("/")]
+            quant = 'each'
+        else:
+            price = qty[qty.find("\n")+1:qty.find("/")]
+            quant = qty[qty.find("/")+1:]
+            if len(quant) > 16:
+                quant = quant.replace("\n", '').strip()[0:3]
+        prices.append(price.strip().replace("\n",'').replace("e",'').strip())
+        quantity.append(quant.replace("\n",'').strip().replace(" ",''))
     for i in range(len(names)):
-        tup = (float(prices[i][1:]), names[i])
-        prices_to_names.append(tup)
+        if prices[i] != '' or quantity[i] != '':
+            tup = (prices[i][1:], names[i], quantity[i])
+            prices_to_names.append(tup)
 
     return prices_to_names
 
@@ -49,8 +53,9 @@ def scrape(name_):
 def sort_tuple(tuple_list):
     return sorted(tuple_list, key=lambda x: x[0])
 
+
 if __name__ == "__main__":
-    tup_list = scrape("apple sauce")
+    tup_list = scrape("apple")
     print(tup_list)
 
     sorted_tup_list = sort_tuple(tup_list)

@@ -71,7 +71,6 @@ TEMPLATES = [
     },
 ]
 
-print(TEMPLATES[0]["DIRS"])
 
 WSGI_APPLICATION = 'recipeasy.wsgi.application'
 

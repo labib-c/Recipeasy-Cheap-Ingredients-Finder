@@ -13,16 +13,53 @@
 <body>
 
 <div class="container-fluid">
+	<div class='container-fluid' id='sub2'>
+		<h1 id ='second'>
+		Choose your ingredients
+		</h1>
+	</div>
 	<div class='container-fluid' id='sub'>
 		<h1 id='first'>
 		Welcome to Recipeasy
 		</h1>
 	</div>
-	<div class='container-fluid' id='sub'>
-		<h1 id ='second'>
-		Choose your ingredients
-		</h1>
-	</div>
+
+	<a href="{% url 'views' %}" class="top-menu"></a>
+	<form action="views.index" method="post">
+			<label for="views.index">Your name: </label>
+			<input id="views.index" type="text" name="views.index" value="{{ quantity }}">
+			<input type="submit" value="OK">
+	</form>
+	<!-- {{ ingredientForm.non_field_errors }}
+<div class="fieldWrapper">
+    {{ form.subject.errors }}
+    <label for="{{ ingredientForm.name.id_for_label }}">Name :</label>
+    {{ ingredientForm.name }}
+</div>
+<div class="fieldWrapper">
+    {{ form.message.errors }}
+    <label for="{{ form.message.id_for_label }}">Your message:</label>
+    {{ form.message }}
+</div>
+<div class="fieldWrapper">
+    {{ form.sender.errors }}
+    <label for="{{ form.sender.id_for_label }}">Your email address:</label>
+    {{ form.sender }}
+</div>
+<div class="fieldWrapper">
+    {{ form.cc_myself.errors }}
+    <label for="{{ form.cc_myself.id_for_label }}">CC yourself?</label>
+    {{ form.cc_myself }}
+<!-- </div> -->
+<!-- <p><label for="id_subject">Subject:</label>
+    <input id="id_subject" type="text" name="subject" maxlength="100" required /></p>
+<p><label for="id_message">Message:</label>
+    <textarea name="message" id="id_message" required></textarea></p>
+<p><label for="id_sender">Sender:</label>
+    <input type="email" name="sender" id="id_sender" required /></p>
+<p><label for="id_cc_myself">Cc myself:</label>
+    <input type="checkbox" name="cc_myself" id="id_cc_myself" /></p>
+		<input type="submit" value="OK"> --> -->
 </div>
 
 

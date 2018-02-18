@@ -1,9 +1,11 @@
 from .models import *
 from django import forms
 
-class IngredientForm(forms.Form):
+class IngredientForm(forms.ModelForm):
+
+
     class Meta:
         model = Ingredient
-        fields = ["name", "quantity", "measurement"]
+        fields = ["quantity", "measurement", "name"]
 
-        labels = {"name": "Name of the ingredient", "quantity": "Quantity of the ingredient", "measurement": "Unit"}
+        labels = {"quantity": "Quantity of the ingredient", "measurement": "Unit", "name": "Name of the ingredient",}

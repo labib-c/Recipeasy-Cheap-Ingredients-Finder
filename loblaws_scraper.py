@@ -30,9 +30,10 @@ def scrape(name_):
         'class':'reg-qty'}).parent.parent.parent.parent.parent.parent.parent.parent.find_all(
             'span', attrs={'class': 'reg-qty'}):
         qty = q.text.strip()
-        if '100\nea' in qty:
-            pass
-        if 'ea' in qty:
+        if '100ea' in (qty.replace("\n", "")).replace(" ", ""):
+            price = ""
+            quant = ""
+        elif 'ea' in qty:
             price = qty[qty.find("\n")+1:qty.find("/")]
             quant = 'each'
         else:
@@ -44,7 +45,7 @@ def scrape(name_):
         quantity.append(quant.replace("\n",'').strip().replace(" ",''))
     for i in range(len(names)):
         if prices[i] != '' or quantity[i] != '':
-            tup = (prices[i][1:], names[i], quantity[i])
+            tup = (float(prices[i][1:]), names[i], quantity[i])
             prices_to_names.append(tup)
 
     return prices_to_names
@@ -62,7 +63,7 @@ def get_wanted_quantities(desired_quantity, tuplist):
             counter += 1
 
 if __name__ == "__main__":
-    tup_list = scrape("apple sauce")
+    tup_list = scrape("orange")
     print(tup_list)
 
     sorted_tup_list = sort_tuple(tup_list)

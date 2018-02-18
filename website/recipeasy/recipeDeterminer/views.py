@@ -24,7 +24,12 @@ def index(request):
             print("form is valid")
             return render(request, "design_2.html", context)
         else:
-            print("invalid")
+            print("form is invalid")
+            context = {
+            "ingredientForm": IngredientForm
+            }
+            return render(request, "design_2.html", context)
+
     else:
         ingredientForm = IngredientForm(request.POST or None)
         context = {

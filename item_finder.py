@@ -14,13 +14,13 @@ def find_items(items, quantities, numbers): #items, quantities, and numbers shou
         tuples.append(corresponding_tuple)
     return [tuples, price]
 
+def return_final_price(items, quantities, numbers):
+    tuples_price = find_items(items, quantities, numbers)
+    return tuples_price[1]
+
 if __name__ == "__main__":
     items_ = ["apple", "banana", "orange"]
-    for item in items_:
-        tuple_list = loblaws_scraper.scrape(item)
-        print(loblaws_scraper.sort_tuple(tuple_list))
-        print("")
     quantities_ = ["g", "g", "g"]
     numbers_ = [10, 10, 10]
-    tuples_and_price = find_items(items_, quantities_, numbers_)
-    print(tuples_and_price)
+    final_price = return_final_price(items_, quantities_, numbers_)
+    print(final_price)

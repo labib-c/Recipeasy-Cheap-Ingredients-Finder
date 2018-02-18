@@ -53,10 +53,20 @@ def scrape(name_):
 def sort_tuple(tuple_list):
     return sorted(tuple_list, key=lambda x: x[0])
 
+def get_wanted_quantities(desired_quantity, tuplist):
+    counter = 0
+    while counter < len(tuplist):
+        if tuplist[counter][2] != desired_quantity:
+            del tuplist[counter]
+        else:
+            counter += 1
 
 if __name__ == "__main__":
-    tup_list = scrape("apple")
+    tup_list = scrape("apple sauce")
     print(tup_list)
 
     sorted_tup_list = sort_tuple(tup_list)
+    print(sorted_tup_list)
+
+    get_wanted_quantities('kg', sorted_tup_list)
     print(sorted_tup_list)

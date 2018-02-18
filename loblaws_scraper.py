@@ -46,7 +46,8 @@ def scrape(name_):
         if quant_to_add != '' or price_to_add != '':
             price_to_add = float(price_to_add)
             if quant_to_add.strip() == 'kg':
-                price_to_add *= 10
+                price_to_add /= 10
+                price_to_add = round(price_to_add, 2)
                 quant_to_add = "100g"
         prices.append(price_to_add)
         quantity.append(quant_to_add)

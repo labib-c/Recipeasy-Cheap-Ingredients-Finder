@@ -3,8 +3,8 @@ from django.db import models
 # Create your models here.
 
 measurementChoices = (
-                        ("kg","kg"),
-                        ("pound", "pound"),
+                        ("g","g"),
+                        ("ounce", "ounce"),
                         ("ml","ml")
                      )
 

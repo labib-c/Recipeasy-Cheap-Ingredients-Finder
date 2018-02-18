@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_protect#
 from .forms import *
+from .code.item_finder import *
 
 # Create your views here.
 
@@ -17,7 +18,7 @@ def index(request):
             newIngredientForm = IngredientForm(request.POST or None,initial={"quantity": "123"})
             allIngredients = Ingredient.objects.all()
             context = {
-            "cheapestPrice": "placeholder(quantity,measurement,name)",
+            "cheapestPrice": item_finder.return_final_price([name],[measurement],[quantity]),
             "ingredientForm": newIngredientForm,
             "allIngredients": allIngredients
             }

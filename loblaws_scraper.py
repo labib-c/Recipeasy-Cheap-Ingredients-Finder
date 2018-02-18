@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
+import conversions
 
 def scrape(name_):
     name_list = name_.split()
@@ -63,9 +64,10 @@ def sort_tuple(tuple_list):
     return sorted(tuple_list, key=lambda x: x[0])
 
 def get_wanted_quantities(desired_quantity, tuplist):
+    conv = conversions.get_loblaws_quantity(desired_quantity)
     counter = 0
     while counter < len(tuplist):
-        if tuplist[counter][2] != desired_quantity:
+        if tuplist[counter][2] != conv:
             del tuplist[counter]
         else:
             counter += 1
@@ -77,5 +79,5 @@ if __name__ == "__main__":
     sorted_tup_list = sort_tuple(tup_list)
     print(sorted_tup_list)
 
-    get_wanted_quantities('kg', sorted_tup_list)
+    get_wanted_quantities('g', sorted_tup_list)
     print(sorted_tup_list)

@@ -32,7 +32,9 @@ if __name__ == "__main__":
     import loblaws_scraper
     prices_to_names = loblaws_scraper.scrape("apple sauce")
     tup_list = loblaws_scraper.sort_tuple(prices_to_names)
+    loblaws_scraper.get_wanted_quantities("100mL", tup_list)
     print(tup_list)
+
     print(check_similarity("apple sauce", tup_list))
 
     # tuple_list = [(1.2, "hello"), (1.2, "good good"), (1.443, "banana sauce"), (1.5, "banana, whattup")]

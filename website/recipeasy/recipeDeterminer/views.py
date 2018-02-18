@@ -5,7 +5,7 @@ from .forms import *
 
 # Create your views here.
 
-#@csrf_protect#
+
 def index(request):
     if request.method == "POST":
         ingredientForm = IngredientForm(request.POST)
@@ -26,7 +26,7 @@ def index(request):
         else:
             print("form is invalid")
             context = {
-            "ingredientForm": IngredientForm
+            "ingredientForm": ingredientForm
             }
             return render(request, "design_2.html", context)
 

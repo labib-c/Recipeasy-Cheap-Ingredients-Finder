@@ -1,0 +1,11 @@
+
+<form action="." method="POST">
+    {% csrf_token %}
+    {{ ingredientForm.as_p }}
+    <input type="submit" value="OK">
+</form>
+
+{{ cheapestPrice }}
+{% for ingredient in allIngredients %}
+{{ ingredient }}
+{% endfor %}

@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from recipeDeterminer import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('recipeDeterminer/', views.index)
+    path('recipeDeterminer/', views.index),
+    path('recipeDeterminer/new/', views.ingredient_new, name='ingredient_new')
 ]

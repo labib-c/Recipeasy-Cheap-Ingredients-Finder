@@ -3,6 +3,7 @@ import urllib.request
 import conversions
 
 def scrape(name_):
+    """Returns list of tuples of form (price, name, quantity) given an item to search loblaws"""
     name_list = name_.split()
     if len(name_list) == 1:
         webpage_name = ("https://www.loblaws.ca/search/1518898683998/page/~item/" + name_ +
@@ -61,9 +62,12 @@ def scrape(name_):
 
 
 def sort_tuple(tuple_list):
+    """Return sorted list of tuples given an unsorted list"""
     return sorted(tuple_list, key=lambda x: x[0])
 
+
 def get_wanted_quantities(desired_quantity, tuplist):
+    """Remove all items from given tuple list if they do not match the given quantity type"""
     conv = conversions.get_loblaws_quantity(desired_quantity)
     counter = 0
     while counter < len(tuplist):
@@ -71,6 +75,7 @@ def get_wanted_quantities(desired_quantity, tuplist):
             del tuplist[counter]
         else:
             counter += 1
+
 
 if __name__ == "__main__":
     tup_list = scrape("orange")

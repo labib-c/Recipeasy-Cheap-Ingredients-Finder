@@ -2,7 +2,9 @@ import loblaws_scraper
 import validity_checker
 import conversions
 
+
 def find_items(items, quantities, numbers): #items, quantities, and numbers should be parallel lists
+    """Returns list of most appropriate and cheapest items given parallel lists of items, quantities, and numbers"""
     price = 0
     tuples = []
     for i in range(len(items)):
@@ -14,13 +16,17 @@ def find_items(items, quantities, numbers): #items, quantities, and numbers shou
         tuples.append(corresponding_tuple)
     return [tuples, price]
 
+
 def return_final_price(items, quantities, numbers):
+    """Returns final price of the given recipe"""
     tuples_price = find_items(items, quantities, numbers)
     return tuples_price[1]
+
 
 if __name__ == "__main__":
     items_ = ["apple", "banana", "orange"]
     quantities_ = ["g", "g", "g"]
     numbers_ = [10, 10, 10]
+    print(find_items(items_, quantities_, numbers_))
     final_price = return_final_price(items_, quantities_, numbers_)
     print(final_price)

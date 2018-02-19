@@ -1,6 +1,8 @@
 from nltk.corpus import wordnet
 
+
 def check_similarity(term, sorted_tuple_list):
+    """ Returns the most similar item given the list of products"""
     term_words = term.split()
     for i in range(len(sorted_tuple_list)):
         new_name = sorted_tuple_list[i][1].rsplit(',', 1)[0]  # remove last comma and beyond
@@ -32,19 +34,17 @@ def check_similarity(term, sorted_tuple_list):
     return sorted_tuple_list[0]
 
 
-
-
 if __name__ == "__main__":
     import loblaws_scraper
     prices_to_names = loblaws_scraper.scrape("whole tomatoes")
     tup_list = loblaws_scraper.sort_tuple(prices_to_names)
-    # loblaws_scraper.get_wanted_quantities("100mL", tup_list)
+    loblaws_scraper.get_wanted_quantities("100mL", tup_list)
     print(tup_list)
 
     print(check_similarity("tomato", tup_list))
 
-    # tuple_list = [(1.2, "hello"), (1.2, "good good"), (1.443, "banana sauce"), (1.5, "banana, whattup")]
-    # print(check_similarity("apple sauce", tuple_list))
+    tuple_list = [(1.2, "hello"), (1.2, "good good"), (1.443, "banana sauce"), (1.5, "banana, whattup")]
+    print(check_similarity("apple sauce", tuple_list))
 
 
 
